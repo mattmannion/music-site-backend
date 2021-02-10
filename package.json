@@ -2,9 +2,9 @@
   "name": "music-site-backend",
   "description": "backend for music site using apollo, graphql, express, type-graphql, and typeorm.",
   "version": "1.0.0",
-  "main": "server.ts",
+  "main": "src/index.ts",
   "scripts": {
-    "start": "tsnd --respawn server.ts"
+    "start": "tsnd --respawn src/index.ts"
   },
   "repository": {
     "type": "git",
