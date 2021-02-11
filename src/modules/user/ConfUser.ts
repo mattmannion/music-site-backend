@@ -1,12 +1,13 @@
 import { Arg, Mutation, Resolver } from 'type-graphql';
 import { Users } from '../../entity/Users';
 import { redis } from '../../redis';
+import { confPrefix } from '../constants/redisPrefixes';
 
 @Resolver()
 export class ConfUserResolver {
   @Mutation(() => Boolean)
   async confUser(@Arg('token') token: string): Promise<boolean> {
-    const userId = await redis.get(token);
+    const userId = await redis.get(confPrefix + token);
 
     if (!userId) return false;
 
