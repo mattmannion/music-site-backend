@@ -3,7 +3,7 @@ import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from 'typeorm';
 
 @ObjectType()
 @Entity()
-export class User extends BaseEntity {
+export class Users extends BaseEntity {
   @Field(() => ID)
   @PrimaryGeneratedColumn()
   id: number;
@@ -21,7 +21,7 @@ export class User extends BaseEntity {
   email: string;
 
   @Field()
-  name(@Root() parent: User): string {
+  name(@Root() parent: Users): string {
     return `${parent.firstName} ${parent.lastName}`;
   }
 
