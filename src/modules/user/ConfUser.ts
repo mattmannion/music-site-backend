@@ -11,7 +11,7 @@ export class ConfUserResolver {
 
     if (!userId) return false;
 
-    await Users.update({ id: parseInt(userId, 10) }, { confirmed: true });
+    await Users.update({ id: parseInt(userId) }, { confirmed: true });
 
     await redis.del(token);
 
