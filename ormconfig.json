@@ -6,7 +6,6 @@
   "username": "postgres",
   "password": "Tempest1",
   "database": "typegraphql-example",
-  "logging": true,
   "synchronize": true,
   "entities": ["src/entity/*.*"]
 }

@@ -6,15 +6,13 @@ import { v4 as uuid } from 'uuid';
 @Resolver()
 export class CreateJsonResolver {
   @Mutation(() => jsonbtest)
-  async createJson(
-    @Arg('data') { name, options }: Input
-  ): Promise<jsonbtest | void> {
+  async createJson(@Arg('data') { name, options }: Input): Promise<jsonbtest> {
     const id = uuid().replace(/-/g, '');
 
     const colors = options.map(({ color }) => color);
     const imgs = options.map(({ img }) => JSON.stringify(img));
 
-    const jsonString = () => {
+    const jsonToString = () => {
       let res = [];
       for (let i = 0; i < options.length; i++) {
         res.push(`json('{"color": "${colors[i]}", "img": ${imgs[i]}}')`);
@@ -25,7 +23,7 @@ export class CreateJsonResolver {
     // acutally db entry
     await jsonbtest.query(`
       insert into jsonbtest(id, name, options)
-      values('${id}', '${name}', array[${jsonString().join(',')}])
+      values('${id}', '${name}', array[${jsonToString().join(',')}])
     `);
 
     // return only for graphql response
