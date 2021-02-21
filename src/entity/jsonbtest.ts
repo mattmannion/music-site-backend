@@ -1,5 +1,5 @@
 // import { json } from 'express';
-import { GraphQLJSONObject } from 'graphql-type-json';
+import GraphQLJSONObject from 'graphql-type-json';
 import { Field, ID, ObjectType } from 'type-graphql';
 import {
   Entity,

@@ -1,19 +1,17 @@
 import 'reflect-metadata';
 import { ApolloServer } from 'apollo-server-express';
 import Express from 'express';
-import { buildSchema } from 'type-graphql';
 import { createConnection } from 'typeorm';
 import session from 'express-session';
 import connectRedis from 'connect-redis';
 import { redis } from './redis';
 import cors from 'cors';
+import buildSchema from './schema/Buildschema';
 
 (async () => {
   await createConnection().then(() => console.log('db connected'));
 
-  const schema = await buildSchema({
-    resolvers: [__dirname + '/modules/**/*.ts'],
-  });
+  const schema = await buildSchema;
 
   const apolloServer = new ApolloServer({
     schema,
@@ -43,7 +41,7 @@ import cors from 'cors';
       cookie: {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
-        maxAge: 1000 * 60 * 60 * 24 * 1 * 365, // 7 years
+        maxAge: 1000 * 60 * 60 * 24 * 365 * 1, // 1 year
       },
     } as any)
   );

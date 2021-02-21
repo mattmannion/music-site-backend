@@ -7,5 +7,5 @@
   "password": "Tempest1",
   "database": "typegraphql-example",
   "synchronize": true,
-  "entities": ["src/entity/*.*"]
+  "entities": ["dist/entity/*.*"]
 }
